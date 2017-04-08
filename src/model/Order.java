@@ -1,31 +1,32 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Order {
 
-	private int orderId;
-	private int userId;
-	private LocalDate date;
+	private long orderId;
+	private long userId;
+	private LocalDateTime date;
 	
-	public Order(int userId, LocalDate date) {
+	public Order(long userId, LocalDateTime date) {
 		this.userId = userId;
 		this.date = date;
 	}
 	
-	public void setOrderId(int orderId) {
+	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 
-	public int getOrderId() {
+	public long getOrderId() {
 		return orderId;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 	
