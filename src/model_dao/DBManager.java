@@ -41,6 +41,7 @@ public class DBManager {
 	
 	public String getInsertSql(String table, String[] columns) {
 		String columnsList = String.join(", ", columns);
+		System.out.println(columnsList);
 		String questions = String.join(", ",getQuestionMarks(columns));
 		return String.format(
 				// insert into users (first_name, last_name, email, password) values (?, ?, ?, ?)
@@ -76,7 +77,11 @@ public class DBManager {
 	private String[] getQuestionMarks(String[] values) {
 		String[] questions = new String[values.length];
 		for (int i = 0 ; i < questions.length; i++) {
-			questions[i] = "?";
+			if(i == 3 && values[3].equals("password")){				
+				questions[i] = "md5(?)";
+			}else{
+				questions[i] = "(?)";
+			}
 		}
 		
 		return questions;
