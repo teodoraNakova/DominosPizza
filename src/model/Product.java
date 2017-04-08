@@ -2,17 +2,22 @@ package model;
 
 public class Product {
 
-	private int productId;
+	private long productId;
 	private String name;
 	private double price;
+	private long ownerId;
 	
 	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;
 	}
 
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
+	}
+	
+	public long getOwnerId() {
+		return ownerId;
 	}
 
 	public String getName() {
@@ -23,7 +28,7 @@ public class Product {
 		return price;
 	}
 	
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 	
