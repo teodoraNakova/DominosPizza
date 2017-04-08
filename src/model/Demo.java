@@ -19,6 +19,7 @@ public class Demo {
 //		User u = UserDAO.getInstance().getUser(1);
 //		System.out.println(u);
 		
-		UserDAO.getInstance().validLogin(user, "sudjunka@abv.bg", "Sudjunka1234");
+		UserDAO.getInstance().validLogin(user, "sudjunka@abv.bg", "Sudjunka123");
+		//TODO insert s heshirane
 	}
 }

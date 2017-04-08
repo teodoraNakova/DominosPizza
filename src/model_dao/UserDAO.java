@@ -83,19 +83,6 @@ public class UserDAO implements IDao {
 	
 	public synchronized boolean validLogin(User user, String email, String password) 
 			throws SQLException, NoSuchAlgorithmException {
-		/*PreparedStatement st = DBManager.getInstance()
-				.getSelectStatement(getTableName(), getColumnNames(), "email");
-		
-		st.setString(1, email);
-		ResultSet rs = st.executeQuery();
-
-		if (!rs.next()) {
-			return false;
-		}
-	
-		String pass = rs.getString(4);
-*/
-		//String hashedPasswrod = User.hashPassword(user.getPassword());
 		String userPassword = user.getPassword();
 		System.out.println(userPassword);
 		String hashedPassword = User.hashPassword(password);
