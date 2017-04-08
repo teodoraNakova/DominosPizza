@@ -3,7 +3,6 @@ package validation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Form {
 	public class Error {
@@ -17,7 +16,7 @@ public class Form {
 		public String value;
 	}
 	
-	private Map<String, List<Form.Error>> _errors;
+	private HashMap<String, List<Form.Error>> _errors;
 	
 	public Form() {
 		_errors = new HashMap<String, List<Form.Error>>();

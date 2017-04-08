@@ -24,22 +24,22 @@ public class LoginServlet extends HttpServlet{
 		try{
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
-			HttpSession session = null;
-			String error = "";	
+			HttpSession session = req.getSession();
+			Form form = new Form();
 			User user = UserDAO.getInstance().findByEmail(email);
 			boolean validLogin = UserDAO.getInstance().validLogin(user, email, password);
-			Form form = new Form();
+				
 			System.out.println(validLogin);
 			if(validLogin) {
-				session = req.getSession();
-				//user id?
+				session.setAttribute("user", user);
 				session.setAttribute("logged", true);
 				session.setMaxInactiveInterval(15*60); // 15 minutes
-				session.setAttribute("user", user);
 				//resp.sendRedirect(to main page);
 			} else {
 				//stay on the same page, keep the correct data
 				//form.addError(new Form.Error("email", "Invalid email or password"));
+				form.addError(form.new Error("email", "Invalid email or password"));
+				session.setAttribute("form", form);
 			}
 		} catch (Exception e) {
 				System.out.println(e.getMessage());

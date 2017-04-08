@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -13,6 +14,7 @@ import model.User;
 public class UserDAO implements IDao {
 
 	private static UserDAO instance;
+	private static HashMap<String, User> registeredUsers = new HashMap<String, User>();
 	
 	private UserDAO() {
 	}
@@ -34,6 +36,7 @@ public class UserDAO implements IDao {
 		ResultSet rs = st.getGeneratedKeys();
 		rs.next();
 		u.setUserId(rs.getLong(1));
+		registeredUsers.put(u.getEmail(), u);
 	}
 	
 	public synchronized User getUser(long primary) throws SQLException{
@@ -83,10 +86,19 @@ public class UserDAO implements IDao {
 	
 	public synchronized boolean validLogin(User user, String email, String password) 
 			throws SQLException, NoSuchAlgorithmException {
-		String userPassword = user.getPassword();
-		System.out.println(userPassword);
+		
+		if (user == null) {
+			return false;
+		}
+		
+		if(!registeredUsers.containsKey(email)) {
+			return false;		
+		}
+		
 		String hashedPassword = User.hashPassword(password);
-		return userPassword.equals(hashedPassword);
+		System.out.println(user.getPassword());
+		
+		return user.getPassword().equals(hashedPassword);
 	}
 	
 	@Override
