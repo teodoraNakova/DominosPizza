@@ -5,8 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -66,7 +64,8 @@ public class UserDAO implements IDao {
 	}
 	
 	public synchronized boolean validLogin(String email, String password) throws SQLException{
-		PreparedStatement st = DBManager.getInstance().getSelectStatement(getTableName(), getColumnNames(), email);
+		PreparedStatement st = DBManager.getInstance().getSelectStatement(getTableName(), getColumnNames(), "email");
+		st.setString(1, email);
 		ResultSet rs = st.executeQuery();
 		if(rs.next()){
 			String pass = rs.getString(4);

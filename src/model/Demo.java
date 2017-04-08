@@ -14,6 +14,7 @@ public class Demo {
 //		} catch (SQLException e) {
 //			System.out.println("Error adding user." + e.getMessage());
 //		}
+		
 //		User u = UserDAO.getInstance().getUser(1);
 //		System.out.println(u);
 		

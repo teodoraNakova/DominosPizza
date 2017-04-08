@@ -66,7 +66,8 @@ public class DBManager {
 				allColumns.toArray(new String[columns.length]));//+1
 		String sql = String.format(
 				// select col1, col2, col3, col4 from <tableName> where <primaryKeyName> = ?
-				"SELECT %s FROM %s WHERE email = '%s'", columnsJoined, table, primary);
+				"SELECT %s FROM %s WHERE %s = ?", columnsJoined, table, primary);
+		System.out.println(sql);
 		PreparedStatement sth = getConnection().prepareStatement(sql);
 		
 		return sth;
