@@ -1,5 +1,10 @@
 package model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import javax.xml.bind.DatatypeConverter;
+
 public class User {
 
 	private long userId;
@@ -46,5 +51,14 @@ public class User {
 	
 	public void setAvatarLink(String avatarLink) {
 		this.avatarLink = avatarLink;
+	}
+	
+	public static String hashPassword(String password) throws NoSuchAlgorithmException{
+		MessageDigest m = MessageDigest.getInstance("MD5");
+		m.update(password.getBytes());
+		byte[] digest = m.digest();
+		String hashtext = DatatypeConverter.printHexBinary(digest).toLowerCase();
+		
+		return hashtext;
 	}
 }

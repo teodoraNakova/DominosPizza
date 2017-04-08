@@ -1,14 +1,15 @@
 package model;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import model_dao.UserDAO;
 
 public class Demo {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, NoSuchAlgorithmException {
 		
-//		User user = new User("Teodora", "Nakova", "sudjunka@abv.bg", "Sudjunka123");
+		User user = new User("Teodora", "Nakova", "sudjunka@abv.bg", "Sudjunka123");
 //		try {
 //			UserDAO.getInstance().addUser(user);
 //		} catch (SQLException e) {
@@ -18,6 +19,6 @@ public class Demo {
 //		User u = UserDAO.getInstance().getUser(1);
 //		System.out.println(u);
 		
-		UserDAO.getInstance().validLogin("sudjunka@abv.bg", "Sudjunka123");
+		UserDAO.getInstance().validLogin(user, "sudjunka@abv.bg", "Sudjunka1234");
 	}
 }

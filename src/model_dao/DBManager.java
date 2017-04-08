@@ -60,7 +60,7 @@ public class DBManager {
 		ArrayList<String> allColumns = new ArrayList<String>();
 		List<String> columnsList = Arrays.asList(columns);
 		allColumns.addAll(columnsList);
-		//allColumns.add(primary);
+		allColumns.add("user_id");
 		
 		String columnsJoined = String.join(", ", 
 				allColumns.toArray(new String[columns.length]));//+1
