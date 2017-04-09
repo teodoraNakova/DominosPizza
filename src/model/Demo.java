@@ -19,6 +19,6 @@ public class Demo {
 //		User u = UserDAO.getInstance().getUser(3);
 //		System.out.println(u.getEmail());
 //		
-		System.out.println(UserDAO.getInstance().validLogin("sudjunka@abv.bg", "Sudjunka123"));
+		//System.out.println(UserDAO.getInstance().validLogin("sudjunka@abv.bg", "Sudjunka123"));
 	}
 }
