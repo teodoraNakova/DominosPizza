@@ -52,12 +52,14 @@ public class EmailSender {
 
 		// TODO
 		//Make the code expire somehow
+		//Add field in databasa - is_verified
 		// The user clicks the link and request is sent to your site confirmaion
 		// servlet;
 		// Confirmation servlet will search for the account associated with the
 		// specified confirmation id;
 		// Confirmaion servlet set account to "confirmed state" as obvously the
 		// user has access to the specified mail box
+		//insert user to data base and ask him for password
 
 	}
 }

@@ -21,13 +21,13 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {	
-		System.out.println("why");
 		try{
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
 			HttpSession session = req.getSession();
 			Form form = new Form();
 			User user = UserDAO.getInstance().findByEmail(email);
+			System.out.println(user);
 			boolean validLogin = UserDAO.getInstance().validLogin(user, email, password);
 				
 			System.out.println(validLogin);

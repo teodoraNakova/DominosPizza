@@ -88,16 +88,12 @@ public class UserDAO implements IDao {
 			throws SQLException, NoSuchAlgorithmException {
 		
 		if (user == null) {
-			return false;
-		}
-		
-		if(!registeredUsers.containsKey(email)) {
-			return false;		
+			System.out.println("?");
+			return false;	
 		}
 		
 		String hashedPassword = User.hashPassword(password);
 		System.out.println(user.getPassword());
-		
 		return user.getPassword().equals(hashedPassword);
 	}
 	
