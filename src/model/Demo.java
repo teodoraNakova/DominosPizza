@@ -12,14 +12,16 @@ public class Demo {
 
 	public static void main(String[] args) throws SQLException, NoSuchAlgorithmException {
 		
-		ArrayList<Product> products = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			Product p = new Product("Pizza " + i, 2);
-			p.setProductId(i+1);
-			products.add(p);
-		}
-		Order o = new Order(1, LocalDateTime.now());
-		OrderDAO.getInstance().makeOrder(o, products);
+//		ArrayList<Product> products = new ArrayList<>();
+//		for (int i = 0; i < 5; i++) {
+//			Product p = new Product("Pizza " + i, 2);
+//			p.setProductId(i+1);
+//			products.add(p);
+//		}
+//		Order o = new Order(1, LocalDateTime.now());
+//		OrderDAO.getInstance().makeOrder(o, products);
+		
+		User user = new User("Martin", "Binev", "marto@abv.bg", "Marto123");
 		
 	}
 }

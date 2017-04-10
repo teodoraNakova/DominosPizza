@@ -14,7 +14,7 @@ import model.User;
 public class UserDAO implements IDao {
 
 	private static UserDAO instance;
-	private static HashMap<String, User> registeredUsers = new HashMap<String, User>();
+	public static HashMap<String, User> registeredUsers = new HashMap<String, User>();
 	
 	private UserDAO() {
 	}
