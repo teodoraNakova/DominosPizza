@@ -5,6 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import javax.xml.bind.DatatypeConverter;
@@ -32,6 +34,8 @@ public class UserDAO implements IDao {
 		st.setString(2, u.getLastName());
 		st.setString(3, u.getEmail());
 		st.setString(4, u.getPassword());
+		st.setTimestamp(5, Timestamp.valueOf(u.getRegistrationTime()));
+		st.setBoolean(6, u.getIsVerified());
 		st.execute();
 		ResultSet rs = st.getGeneratedKeys();
 		rs.next();
@@ -50,6 +54,8 @@ public class UserDAO implements IDao {
 					rs.getString("last_name"),
 					rs.getString("email"),
 					rs.getString("password"));
+					rs.getTimestamp("register_date").toLocalDateTime();
+					rs.getBoolean("is_validated");
 			long userId = rs.getLong("user_id");
 			user.setUserId(userId);
 		}
@@ -68,6 +74,8 @@ public class UserDAO implements IDao {
 					rs.getString("last_name"),
 					rs.getString("email"),
 					rs.getString("password"));
+					rs.getTimestamp("register_date").toLocalDateTime();
+					rs.getBoolean("is_validated");
 			long userId = rs.getLong("user_id");
 			user.setUserId(userId);
 		}
@@ -105,7 +113,7 @@ public class UserDAO implements IDao {
 	@Override
 	public String[] getColumns() {
 		return new String[] {
-				"first_name", "last_name", "email", "password"};
+				"first_name", "last_name", "email", "password", "register_date", "is_validated"};
 	}
 	
 	@Override

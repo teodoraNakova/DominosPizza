@@ -61,7 +61,7 @@ public class RegisterServlet extends HttpServlet {
 					EmailSender.sendValidationEmail("dominos.pizza.itt@gmail.com",
 							"Dominos pizza verification code", "Please click on the following link: ");
 					//TODO add link
-					UserDAO.registeredUsers.put(u.getEmail(), u);
+					UserDAO.getInstance().addUser(u);
 					//TODO redirect to login page
 					//resp.sendRedirect("login.jsp");
 				} else {

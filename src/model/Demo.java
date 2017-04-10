@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import validation.EmailSender;
 import model_dao.OrderDAO;
 import model_dao.UserDAO;
 
@@ -23,18 +24,9 @@ public class Demo {
 //		Order o = new Order(1, LocalDateTime.now());
 //		OrderDAO.getInstance().makeOrder(o, products);
 		
-		User user = new User("Martin", "Binev", "martooo@abv.bg", "Marto123");
+//		User user = new User("Ivan", "Zahariev", "ivanzahariev@abv.bg", "Ivancho123");
 //		UserDAO.getInstance().addUser(user);
-//		UserDAO.getInstance().registeredUsers.put(user.getEmail(), user);
-//		HashMap<String, User> users = UserDAO.getInstance().registeredUsers;
-//		for(Entry<String, User> e : users.entrySet()) {
-//			System.out.println(e.getKey());
-//			System.out.println(e.getValue());
-//		}
-//		System.out.println(users);
-		LocalDateTime expireTime =  LocalDateTime.now().plusHours(1);
-		System.out.println(expireTime);
-		LocalDateTime now = LocalDateTime.now();
-		
+		EmailSender.sendValidationEmail("dominos.pizza.itt@gmail.com",
+				"Dominos pizza verification code", "Please click on the following link: ");
 	}
 }

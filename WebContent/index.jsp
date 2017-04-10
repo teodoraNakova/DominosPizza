@@ -21,6 +21,32 @@
 			<input type="submit" />
 		</div>
 	</form>
+	<br>
+	<form action="register" method="post">
+	<div>
+	<input name="first name" type="text" 
+			required="required" placeholder="First name" />
+	</div>
+	<div>
+	<input name="last name" type="text" 
+			required="required" placeholder="Last name" />
+	</div>
+	<div>
+	<input name="email" type="email" 
+			required="required" placeholder="email" />
+	</div>
+	<div>
+	<input name="password" type="password" 
+			required="required" placeholder="password" />
+	</div>
+	<div>
+	<input name="confirm password" type="password" 
+			required="required" placeholder="Confirm password" />
+	</div>
+	<div class="input register">
+			<input type="submit" />
+		</div>
+	</form>
 <script>
 window.fbAsyncInit = function() {
     // FB JavaScript SDK configuration and setup

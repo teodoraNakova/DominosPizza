@@ -23,6 +23,7 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.registrationTime = LocalDateTime.now();
+		this.isVerified = false;
 	} 
 	
 	public long getUserId() {

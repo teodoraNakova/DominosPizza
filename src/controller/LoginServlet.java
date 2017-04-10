@@ -29,16 +29,14 @@ public class LoginServlet extends HttpServlet{
 			Form form = new Form();
 			User user = UserDAO.getInstance().findByEmail(email);
 			
-			if(UserDAO.registeredUsers.containsKey(email) && user == null) {
-				User u = UserDAO.registeredUsers.get(email);
+			if(user != null && !user.getIsVerified()) {
 				LocalDateTime expireTime = user.getRegistrationTime().plusHours(1);
 				LocalDateTime now = LocalDateTime.now();
-				if(expireTime.isAfter(now)) {
+				if(now.isAfter(expireTime)) {
+					user.setIsVerified();
+				} else {
 					//redirect somewhere?
 					//return
-				} else {
-					user.setIsVerified();
-					UserDAO.getInstance().addUser(u);
 				}
 			}
 			
