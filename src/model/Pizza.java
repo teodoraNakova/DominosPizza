@@ -6,7 +6,7 @@ public class Pizza extends Product{
 	private int sizeId;
 	
 	public Pizza(String name, double price, int crustId, int sizeId) {
-		super(name, price);
+		super(name, price, name);
 		this.crustId = crustId;
 		this.sizeId = sizeId;
 	} 
