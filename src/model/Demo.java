@@ -25,14 +25,16 @@ public class Demo {
 		
 		User user = new User("Martin", "Binev", "martooo@abv.bg", "Marto123");
 //		UserDAO.getInstance().addUser(user);
-//		System.out.println("wtf");
-		UserDAO.getInstance().registeredUsers.put(user.getEmail(), user);
-		HashMap<String, User> users = UserDAO.getInstance().registeredUsers;
-		for(Entry<String, User> e : users.entrySet()) {
-			System.out.println(e.getKey());
-			System.out.println(e.getValue());
-		}
-		System.out.println(users);
+//		UserDAO.getInstance().registeredUsers.put(user.getEmail(), user);
+//		HashMap<String, User> users = UserDAO.getInstance().registeredUsers;
+//		for(Entry<String, User> e : users.entrySet()) {
+//			System.out.println(e.getKey());
+//			System.out.println(e.getValue());
+//		}
+//		System.out.println(users);
+		LocalDateTime expireTime =  LocalDateTime.now().plusHours(1);
+		System.out.println(expireTime);
+		LocalDateTime now = LocalDateTime.now();
 		
 	}
 }

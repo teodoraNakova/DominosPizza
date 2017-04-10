@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import validation.CodeGenerator;
 import validation.EmailSender;
 import validation.Form;
 import model.User;
@@ -37,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
 			Form form = new Form();
 			HttpSession session = null;
 			
-			if (UserDAO.getInstance().findByEmail(email) != null) {
+			if (UserDAO.getInstance().findByEmail(email) == null) {
 				// validate parameters
 				boolean validEmail = validateEmail(email);
 				if(!validEmail) {
@@ -59,16 +58,12 @@ public class RegisterServlet extends HttpServlet {
 				// if the data is not valid //if the data is valid
 				if (validEmail && validPassword && password.equals(confirmPassword)) {
 					User u = new User(firstName, lastName, email, password);
-					try {
-						UserDAO.getInstance().addUser(u);
-					} catch (SQLException e) {
-						System.out.println("Error in adding user "
-								+ e.getMessage());
-					}
 					EmailSender.sendValidationEmail("dominos.pizza.itt@gmail.com",
-							"Dominos pizza verification code", "Your code is: " + CodeGenerator.createCode());
+							"Dominos pizza verification code", "Please click on the following link: ");
+					//TODO add link
+					UserDAO.registeredUsers.put(u.getEmail(), u);
 					//TODO redirect to login page
-					resp.sendRedirect("login.jsp");
+					//resp.sendRedirect("login.jsp");
 				} else {
 					//TODO stay on same page, keep the right data and ask the user to fill the form again
 				}

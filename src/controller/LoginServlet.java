@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,10 +28,23 @@ public class LoginServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 			Form form = new Form();
 			User user = UserDAO.getInstance().findByEmail(email);
-			System.out.println(user);
-			boolean validLogin = UserDAO.getInstance().validLogin(user, email, password);
-				
+			
+			if(UserDAO.registeredUsers.containsKey(email) && user == null) {
+				User u = UserDAO.registeredUsers.get(email);
+				LocalDateTime expireTime = user.getRegistrationTime().plusHours(1);
+				LocalDateTime now = LocalDateTime.now();
+				if(expireTime.isAfter(now)) {
+					//redirect somewhere?
+					//return
+				} else {
+					user.setIsVerified();
+					UserDAO.getInstance().addUser(u);
+				}
+			}
+			
+			boolean validLogin = UserDAO.getInstance().validLogin(user, email, password);	
 			System.out.println(validLogin);
+			
 			if(validLogin) {
 				session.setAttribute("user", user);
 				session.setAttribute("logged", true);
@@ -38,7 +52,6 @@ public class LoginServlet extends HttpServlet{
 				//resp.sendRedirect(to main page);
 			} else {
 				//stay on the same page, keep the correct data
-				//form.addError(new Form.Error("email", "Invalid email or password"));
 				form.addError(form.new Error("email", "Invalid email or password"));
 				session.setAttribute("form", form);
 			}

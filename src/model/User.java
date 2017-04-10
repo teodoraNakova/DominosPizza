@@ -2,6 +2,7 @@ package model;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -13,12 +14,15 @@ public class User {
 	private String email;
 	private String password;
 	private String avatarLink;
+	private boolean isVerified;
+	private LocalDateTime registrationTime;
 	
 	public User(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.registrationTime = LocalDateTime.now();
 	} 
 	
 	public long getUserId() {
@@ -45,12 +49,24 @@ public class User {
 		return avatarLink;
 	}
 	
+	public boolean getIsVerified() {
+		return isVerified;
+	}
+	
+	public LocalDateTime getRegistrationTime() {
+		return registrationTime;
+	}
+	
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	
 	public void setAvatarLink(String avatarLink) {
 		this.avatarLink = avatarLink;
+	}
+	
+	public void setIsVerified() {
+		this.isVerified = true;
 	}
 	
 	public static String hashPassword(String password) throws NoSuchAlgorithmException{
