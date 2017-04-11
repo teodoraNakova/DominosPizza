@@ -9,27 +9,37 @@
 </head>
 <script src="jquery-2.1.4.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script type="text/javascript">
-     $(document).on("click", "#somebutton", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-         $.post("menu", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-             $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-         });
-     });
-</script>
-
+   <script type="text/javascript">
+   var category;
+   function choose(choice){
+       category = choice;
+   }
+   function menu()
+   {
+	$.ajax({
+	        url: 'menu',
+	        type: 'POST',
+	        data: {'category':category} ,
+	        dataType: "text/plain",
+	        success: function (response) {
+	        	document.getElementById("haha").innerHTML = result;
+	        },
+	        error: function () {
+	        	 alert(response.innerHTML);
+	        }
+	    }); 
+   }
+   </script>
 <body>
 	<c:if test="${sessionScope.categories != null}">
 			<c:forEach var="categories" items="${sessionScope.categories}"> 	
-				<c:out value="${ categories }"></c:out>
+				<input type="button" onClick="choose('${categories}'); menu()" value= "${ categories}"/>
        			 <div id="somediv"></div>
-       			 <form action="menu" method="post">
-					<button id="somebutton" onclick="menu()" name="category" value="${ categories }" > Show menu</button>
-				</form>
+
 			</c:forEach>
 	</c:if>
 <br>
-<h3>Results:</h3>
-<h2 id="taskNumber"></h2>
-<p id= "taskResponse"></p>
+<h3 >Results:</h3>
+<p id= "haha"></p>
 </body>
 </html>

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import model.Product;
 import model_dao.ProductDAO;
 
@@ -35,7 +38,7 @@ public class menuServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("why are you clicking on me");
+		System.out.println(request);
 		System.out.println(request.getParameter("category"));
 		String category = (String) request.getParameter("category");
 		List<Product> products = null;
@@ -45,10 +48,12 @@ public class menuServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String str = new Gson().toJson(products);
+		System.out.println(str);
+		System.out.println(products);
 		response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
 	    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
-	    System.out.println(products);
-		response.getWriter().append(products.toString());
+		response.getWriter().append(str);
 
 		
 		
