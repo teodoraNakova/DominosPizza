@@ -60,7 +60,7 @@ private static ProductDAO instance;
 				Product p = new Product(rs2.getString("name"), rs2.getDouble("price"), rs2.getString("category"));
 				p.setProductId(rs2.getLong("product_id"));
 				products.get(p.getCategory()).add(p);
-				String sql3 = "SELECT name FROM products WHERE product_id IN (SELECT sub_product_id FROM product_has_products WHERE product_id = 6 AND order_id IS NULL)";
+				String sql3 = "SELECT name FROM products WHERE product_id IN (SELECT sub_product_id FROM product_has_products WHERE product_id = "+p.getProductId()+" AND order_id IS NULL)";
 				st3 = con.prepareStatement(sql3);
 				ResultSet rs3 = st3.executeQuery();
 				while(rs3.next()){

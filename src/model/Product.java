@@ -10,12 +10,14 @@ public class Product {
 	private long ownerId;
 	private String category;
 	private ArrayList<String> subproducts;
+	private String sub;
 	
 	public Product(String name, double price, String category) {
 		this.name = name;
 		this.price = price;
 		this.category = category;
 		subproducts = new ArrayList<>();
+		sub = "Pizza";
 	}
 
 	public long getProductId() {
@@ -49,10 +51,18 @@ public class Product {
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
-	
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public String getSub() {
+		StringBuilder sb = new StringBuilder();
+		for (String string : subproducts) {
+			sb.append(string+"  ");
+		}
+		sub = sb.toString();
+		return sub;
 	}
 }
 

@@ -132,8 +132,8 @@ http://www.templatemo.com/free-website-templates/417-grill
                                     <img src="images/product1.jpg" alt="" />
                                     <div class="hover">
                                         <div class="hover-iner">
-                                            <a class="fancybox" href="images/product1_big.jpg"><img src="images/open-icon.png" alt="" /></a>
-                                            <span>${product.category}</span>
+                                            <a class="fancybox" href="images/product2_big.jpg"><img src="images/open-icon.png" alt="" /></a>
+                                            <span>${product.sub}</span>
                                         </div>
                                     </div>
                                 </div>  
