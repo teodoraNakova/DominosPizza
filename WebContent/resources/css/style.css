@@ -1,4 +1,5 @@
 @import "header.css";
+@import "resources/bootstrap/css/bootstrap.min.css";
     /* For responsive tables with bootstrap in firefox */
     @-moz-document url-prefix() {
         fieldset { display: table-cell; }
@@ -13,7 +14,7 @@
         font-weight: 400;
         font-family: 'Open Sans', sans-serif;
         color: #555555;
-        background: #d8af75 url('/images/background.jpg');
+        background: #d8af75 url('dominos/resources/images/background.jpg');
         /*background: #d8af75 url('/images/bg_xmas.jpg');*/
     }
     .modal-open {
@@ -159,19 +160,19 @@
     }
         .white-decoration-title {
             color: #fff;
-            background-image: url('/images/decor_elem_left_white.svg'), url('/images/decor_elem_right_white.svg');
+            background-image: url('/resources/images/decor_elem_left_white.svg'), url('/resources/images/decor_elem_right_white.svg');
         }
         .red-decoration-title {
-            background-image: url('/images/decor_elem_left_red.svg'), url('/images/decor_elem_right_red.svg');
+            background-image: url('/resources/images/decor_elem_left_red.svg'), url('/resources/images/decor_elem_right_red.svg');
         }
         .blue-decoration-title {
             color: #0f74a8;
-            background-image: url('/images/decor_elem_left_blue.svg'), url('/images/decor_elem_right_blue.svg');
+            background-image: url('/resources/images/decor_elem_left_blue.svg'), url('/resources/images/decor_elem_right_blue.svg');
         }
     .dots-separator {
         width: 100%;
         height: 3px;
-        background: 0 0 url('/images/border.png') repeat-x;
+        background: 0 0 url('/resources/images/border.png') repeat-x;
     }
     input[type=checkbox] { display: none; }
     input[type=checkbox].css-checkbox,
@@ -188,7 +189,7 @@
         font-size: 14px;
         color: #fff;
         letter-spacing: 0.5px;
-        background: url('/images/checkbox.png') no-repeat 0 0;
+        background: url('/resources/images/checkbox.png') no-repeat 0 0;
         vertical-align: middle;
         cursor: pointer;
         -webkit-touch-callout: none;
@@ -229,7 +230,7 @@
         cursor: not-allowed;
     }
     .cselect {
-        background: #f2f4f5 url('/images/select_icon.png') 98% center no-repeat;
+        background: #f2f4f5 url('/resources/images/select_icon.png') 98% center no-repeat;
         border-radius: 4px;
         color: #555;
         padding: 0 calc(2% + 20px) 0 15px;
@@ -289,8 +290,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: #d8af75 url('/images/background.jpg');
-        /*background: #d8af75 url('/images/bg_xmas.jpg');*/
+        background: #d8af75 url('/resources/images/background.jpg');
+        /*background: #d8af75 url('/resources/images/bg_xmas.jpg');*/
     }
     #loading_inner {
         position: relative;
@@ -299,8 +300,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: #d8af75 url('/images/background.jpg');
-        /*background: #d8af75 url('/images/bg_xmas.jpg');*/
+        background: #d8af75 url('/resources/images/background.jpg');
+        /*background: #d8af75 url('/resources/images/bg_xmas.jpg');*/
     }
         #loading img {
             width: 80px;
@@ -543,14 +544,14 @@
     .popup::before,
     .popup::after {
         content: "";
-        background: url('/images/box-top.png') no-repeat bottom left;
+        background: url('/resources/images/box-top.png') no-repeat bottom left;
         width: 100%;
         height: 35px;
         background-size: contain;
         display: block;
     }
     .popup::after {
-        background: url('/images/box-bottom.png') no-repeat top left;
+        background: url('/resources/images/box-bottom.png') no-repeat top left;
         background-size: contain;
     }
     /*.popup:before,*/
@@ -610,7 +611,7 @@
     /*}*/
     .popup-content {
         /*background: url('/images/borders-svg/middle-new.svg') repeat top left;*/
-        background: url('/images/box-middle.png') repeat top left;
+        background: url('/resources/images/box-middle.png') repeat top left;
         background-size: contain;
         padding: 20px 40px 10px;
 
@@ -662,10 +663,10 @@
                 background-size: 40px;
             }
             .popup-curved-carry-out:before {
-                content: url('/images/carry_out_store_white.svg');
+                content: url('/resources/images/carry_out_store_white.svg');
             }
             .popup-curved-delivery:before {
-                content: url('/images/delivery_bike_white.svg');
+                content: url('/resources/images/delivery_bike_white.svg');
             }
         /*.popup-top-left {*/
             /*top: 0;*/
@@ -738,7 +739,7 @@
     }
     .Button_Prev {
         position: absolute;
-        background: url('/images/arrow_previous_white.svg') no-repeat center center;
+        background: url('/resources/images/arrow_previous_white.svg') no-repeat center center;
         width: 40px;
         height: 40px;
         top: calc(50% - 20px);
@@ -799,7 +800,7 @@
         }
         .step2-choice-active:after,
         .step1-choice-active:after {
-            content: url("/images/green_check.svg");
+            content: url("/resources/images/green_check.svg");
             position: absolute;
             display: block;
         }
@@ -851,7 +852,7 @@
         right: 0px;
     }
     .step2-choice-inactive:after {
-        content: url("/images/stores/shops_closed.svg");
+        content: url("/resources/images/stores/shops_closed.svg");
         position: absolute;
         top: calc(50% - 30px);
         right: 15px;
@@ -895,7 +896,7 @@
             }
             .step2-address-desc:before,
             .step2-address-store:before {
-                content: url('/images/map_pin.svg');
+                content: url('/resources/images/map_pin.svg');
                 width: 22px;
                 height: 22px;
                 display: inline-block;
@@ -911,7 +912,7 @@
                 margin-top: 5px;
             }
             .step2-address-store:before {
-                content: url('/images/carry_out_store.svg');
+                content: url('/resources/images/carry_out_store.svg');
                 margin-right: 3px;
             }
                 .step2-address-store > span {
@@ -924,10 +925,10 @@
                 color: #fff;
             }
             .step2-choice-active .step2-address-desc:before {
-                content: url('/images/map_pin_white.svg');
+                content: url('/resources/images/map_pin_white.svg');
             }
             .step2-choice-active .step2-address-store:before {
-                content: url('/images/carry_out_store_white.svg');
+                content: url('/resources/images/carry_out_store_white.svg');
             }
             .step2-choice-inactive .step2-address-desc,
             .step2-choice-inactive .step2-address-store {
@@ -1103,7 +1104,7 @@
             padding: 22px 0px;
         }
     .slider-offer-box {
-        background: url('/images/box-middle.png') repeat top left;
+        background: url('/resources/images/box-middle.png') repeat top left;
         background-size: contain;
         padding: 20px 40px;
     }
@@ -1322,7 +1323,7 @@
         }
 
         #delivery-time {
-            background-image: url('/images/decor_elem_left_red.svg'), url('/images/decor_elem_right_red.svg');
+            background-image: url('/resources/images/decor_elem_left_red.svg'), url('/resources/images/decor_elem_right_red.svg');
             background-position: 2% center, 98% center;
             background-size: 35px;
             background-color: #fff;
@@ -1828,7 +1829,7 @@
     }
     #coupon-box li {
         font-size: 13px;
-        background: url('/images/decor_elem_left_red.svg') no-repeat left center;
+        background: url('/resources/images/decor_elem_left_red.svg') no-repeat left center;
         background-size: 20px;
         padding: 6px 0 6px 25px;
     }
@@ -1978,7 +1979,7 @@
         }
     .order-delivery-time:before,
     .order-delivery-address:before {
-        content: url('/images/hourglass.svg');
+        content: url('/resources/images/hourglass.svg');
         width: 25px;
         height: 25px;
         margin-right: 5px;
@@ -1986,7 +1987,7 @@
         vertical-align: -6px;
     }
     .order-delivery-address:before {
-        content: url('/images/map_pin.svg');
+        content: url('/resources/images/map_pin.svg');
     }
         .order-delivery-time > span,
         .order-delivery-address > span {
@@ -2166,7 +2167,7 @@
                 margin: 3px;
             }
             .microaccount {
-                background-image:url('../../new/images/ePaybg-icon.png');
+                background-image:url('../../new/resources/images/ePaybg-icon.png');
                 width:60px;
                 height:26px;
             }
@@ -2383,7 +2384,7 @@
             width: calc(25% - 18.55px);
         }
             .coupon, .gift {
-                background-image: url('/images/semidots_for_coupons_left.svg'), url('/images/semidots_for_coupons_right.svg');
+                background-image: url('/resources/images/semidots_for_coupons_left.svg'), url('/resources/images/semidots_for_coupons_right.svg');
                 background-repeat: repeat-y, repeat-y;
                 background-position: top left, top right;
                 background-color: #c7b39b;
@@ -2398,7 +2399,7 @@
                 background-color: #dbb989;
             }
     .dotted-lr-bg {
-        background-image: url('/images/border.png'), url('/images/border.png');
+        background-image: url('/resources/images/border.png'), url('/resources/images/border.png');
         background-repeat: repeat-y, repeat-y;
         background-position: 0 0, 100% 0;
     }
@@ -2738,7 +2739,7 @@
     display: none !important;
 }
 .pac-icon-marker {
-    background: url(/images/map_pin.svg) no-repeat center center!important;
+    background: url(/resources/images/map_pin.svg) no-repeat center center!important;
     background-size: 18px;
 }
 #pac-wrapper {
@@ -2938,7 +2939,7 @@
         }
         .rounded-bg-left {
             width: 25px;
-            background: url('/images/borders-svg/mobile/bottom_left.svg') no-repeat left top;
+            background: url('/resources/images/borders-svg/mobile/bottom_left.svg') no-repeat left top;
         }
         .rounded-bg-center {
             background: #fff;
@@ -2947,7 +2948,7 @@
         }
         .rounded-bg-right {
             width: 25px;
-            background: url('/images/borders-svg/mobile/bottom_right.svg') no-repeat right top;
+            background: url('/resources/images/borders-svg/mobile/bottom_right.svg') no-repeat right top;
         }
 
 .box-wrapper {
@@ -3004,11 +3005,11 @@
         margin: 5px 0 2px;
     }
     .deals-outer-wrapper-2col {
-        background: url('/images/border.png') repeat-y 50.3% 0;
+        background: url('/resources/images/border.png') repeat-y 50.3% 0;
         margin: 5px 0 2px;
     }
     .deals-outer-wrapper-3col {
-        background-image: url('/images/border.png'), url('/images/border.png');
+        background-image: url('/resources/images/border.png'), url('/resources/images/border.png');
         background-repeat: repeat-y, repeat-y;
         background-position: 33% 0%, 67.5% 0%;
         margin: 5px 0 2px;
@@ -3046,7 +3047,7 @@
                 line-height: 26px;
             }
         .product-left-wrapper {
-            background: url('/images/border.png') repeat-y 99.8% 0;
+            background: url('/resources/images/border.png') repeat-y 99.8% 0;
             margin-top: 5px;
             padding-right: 28px;
         }
@@ -3276,7 +3277,7 @@
             vertical-align: -2px;
         }
         .toppings-wrapper div.double input:checked + label:before {
-            background: url('/images/close_x.svg') no-repeat center center;
+            background: url('/resources/images/close_x.svg') no-repeat center center;
             background-size: 8px;
         }
 /*Coupons */
@@ -3284,7 +3285,7 @@
     cursor:pointer;
 }
 .RCoupon{
-    background-image: url('/images/delete_icon_grey.png');
+    background-image: url('/resources/images/delete_icon_grey.png');
     height: 25px;
     background-repeat: no-repeat;
     background-position: right center;

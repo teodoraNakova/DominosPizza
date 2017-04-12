@@ -18,11 +18,12 @@
    {
 	$.ajax({
 	        url: 'menu',
-	        type: 'POST',
+	        type: 'GET',
 	        data: {'category':category} ,
-	        dataType: "text/plain",
+	        dataType: "text",
+	        async:false,
 	        success: function (response) {
-	        	document.getElementById("haha").innerHTML = result;
+	        	document.getElementById("result").innerHTML  =response;
 	        },
 	        error: function () {
 	        	 alert(response.innerHTML);
@@ -39,7 +40,6 @@
 			</c:forEach>
 	</c:if>
 <br>
-<h3 >Results:</h3>
-<p id= "haha"></p>
+<h3 id= "result"></h3>
 </body>
 </html>

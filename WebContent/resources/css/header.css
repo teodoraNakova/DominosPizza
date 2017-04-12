@@ -108,11 +108,11 @@
         }
 
         .navbar-default .navbar-nav > .callcenter ul li#callcenter{
-            background:url("/images/footer_icons/tel.svg") center center no-repeat;
+            background:url("/resources/images/footer_icons/tel.svg") center center no-repeat;
         }
 
         .show-phone{
-            background:url("/images/footer_icons/tel_blue.svg") 90% center no-repeat;
+            background:url("/resources/images/footer_icons/tel_blue.svg") 90% center no-repeat;
             background-size: 30px 30px;
         }
 
@@ -307,7 +307,7 @@
             position: relative;
         }
         .step-complete .stepper-icon-wrapper:before {
-            content: url("/images/green_check.svg");
+            content: url("/resources/images/green_check.svg");
             position: absolute;
             display: block;
             width: 15px;

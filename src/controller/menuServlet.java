@@ -23,21 +23,8 @@ import model_dao.ProductDAO;
  */
 @WebServlet("/menu")
 public class menuServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ehooooooooooooooooooo");
-		List<String> categories = null;
-		try {
-			categories = new ArrayList<String>(ProductDAO.getInstance().getAllProducts().keySet());
-		} catch (SQLException e) {
-			System.out.println("MenuServlet problem");
-			e.printStackTrace();
-		}
-		request.getSession().setAttribute("categories", categories);
-		System.out.println(categories);
-		request.getRequestDispatcher("menu.jsp").forward(request, response);
-	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request);
 		System.out.println(request.getParameter("category"));
 		String category = (String) request.getParameter("category");
@@ -49,12 +36,9 @@ public class menuServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		String str = new Gson().toJson(products);
-		System.out.println(str);
-		System.out.println(products);
-		response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
-	    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter().append(str);
-
 		
 		
 	}
