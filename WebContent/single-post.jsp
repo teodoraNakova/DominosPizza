@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -24,7 +27,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         <link rel="stylesheet" href="css/templatemo_misc.css">
         <link rel="stylesheet" href="css/flexslider.css">
         <link rel="stylesheet" href="css/testimonails-slider.css">
-
+		<link rel="stylesheet" href="css/style.css">
         <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
     <body>
@@ -122,12 +125,34 @@ http://www.templatemo.com/free-website-templates/417-grill
                                                 </div>
                                                 <div class="product-content">
                                                     <div class="product-title">
-                                                        <h3>ANOTHER MORNING BREAKFAST</h3>
-                                                        <span class="subtitle">4 comments</span>
+                                                        <h3><c:out value="${product.name}"/></h3>
+                                                        <span class="subtitle">${product.price}</span>
                                                     </div>
-                                                    <p>Single blog post page is here for you. You can use this grill <a href="#">template</a> for any purpose. You do not need to give a credit to templatemo website for any reason. Praesent nec euismod ipsum, eget sodales enim. Duis in rhoncus lorem. Duis fermentum sem et libero viverra, in cursus velit dapibus. Donec dui ante, dapibus ut odio eget, vulputate blandit ante. Integer ullamcorper, augue id malesuada convallis, mauris risus cursus elit, eget scelerisque ipsum massa ac nisi. Donec venenatis vel arcu at pharetra. <a href="#">Aenean</a> a mauris augue. In egestas nisi turpis, et venenatis sapien ultrices eget. Nunc mattis nunc quis erat pretium tristique.<br><br>
-                                                    Mauris suscipit metus ullamcorper enim fringilla sagittis. Duis dui leo, mattis ac rhoncus eget, interdum a ipsum. Duis rutrum, justo et egestas feugiat, dui velit egestas velit, feugiat efficitur ante mauris eu ipsum. Aliquam quis sem vitae mi fringilla ornare eu quis orci. Fusce tellus sem, gravida a nunc eget, vehicula <a href="#">commodo</a> sapien.</p>
-                                                </div>
+                                                    <c:if test="${!empty product.subproducts}">
+                                                    	<form action="POST">
+	                                                    	<c:forEach var="sub" items="${product.subproducts}">
+		                                                    	<c:forEach var="subproduct" items="${sessionScope.subproducts}">
+		                                                    		<table>
+		                                                    		<c:if test="${subproduct != sub}">
+		                                                    			<tr>
+																		    <th><input type="checkbox" name="${subproduct}" value="${subproduct}" /> ${subproduct}</th>
+																		    <th><input type="checkbox" name="extra ${subproduct}" value="extra" /> Extra</th>
+  																		</tr>
+		                                                    		</c:if>
+		                                                    		<br>
+		                                                    		<c:if test="${subproduct == sub}">	
+		                                                    			<tr>
+																	  		<th><input type="checkbox" name="${subproduct}" value="${subproduct}" checked="checked"> ${subproduct}</th>
+																			<th><input type="checkbox" name="extra ${subproduct}" value="extra"> Extra</th>
+		                                                    			<tr>                                                    		
+		                                                    		</c:if>
+		                                                    		</table>                               		
+		                                                    	</c:forEach>
+		                                                    </c:forEach>
+														</form>
+                                                    </c:if>
+                                                    
+                                                 </div>
                                                 <div class="divide-line">
                                                 <img src="images/div-line.png" alt="" />
                                                 </div>

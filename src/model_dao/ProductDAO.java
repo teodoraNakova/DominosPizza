@@ -41,43 +41,45 @@ private static ProductDAO instance;
 	}
 	
 	public HashMap<String, ArrayList<Product>> getAllProducts() throws SQLException{
-		Connection con = DBManager.getInstance().getConnection();
-		PreparedStatement st1 = null;
-		PreparedStatement st2 = null;
-		PreparedStatement st3 = null;
-		
-		try {
-			String sql1 = "SELECT DISTINCT category FROM products";
-			st1 = con.prepareStatement(sql1);
-			ResultSet rs1 = st1.executeQuery();
-			while(rs1.next()){
-				products.put(rs1.getString("category"), new ArrayList<Product>());
-			}
-			String sql2 = "SELECT product_id, name, price, category FROM products";
-			st2 = con.prepareStatement(sql2);
-			ResultSet rs2 = st2.executeQuery();
-			while(rs2.next()){
-				Product p = new Product(rs2.getString("name"), rs2.getDouble("price"), rs2.getString("category"));
-				p.setProductId(rs2.getLong("product_id"));
-				products.get(p.getCategory()).add(p);
-				String sql3 = "SELECT name FROM products WHERE product_id IN (SELECT sub_product_id FROM product_has_products WHERE product_id = "+p.getProductId()+" AND order_id IS NULL)";
-				st3 = con.prepareStatement(sql3);
-				ResultSet rs3 = st3.executeQuery();
-				while(rs3.next()){
-					p.getSubproducts().add(rs3.getString("name"));
+		if(products.isEmpty()){
+			Connection con = DBManager.getInstance().getConnection();
+			PreparedStatement st1 = null;
+			PreparedStatement st2 = null;
+			PreparedStatement st3 = null;
+			
+			try {
+				String sql1 = "SELECT DISTINCT category FROM products";
+				st1 = con.prepareStatement(sql1);
+				ResultSet rs1 = st1.executeQuery();
+				while(rs1.next()){
+					products.put(rs1.getString("category"), new ArrayList<Product>());
 				}
+				String sql2 = "SELECT product_id, name, price, category FROM products";
+				st2 = con.prepareStatement(sql2);
+				ResultSet rs2 = st2.executeQuery();
+				while(rs2.next()){
+					Product p = new Product(rs2.getString("name"), rs2.getDouble("price"), rs2.getString("category"));
+					p.setProductId(rs2.getLong("product_id"));
+					products.get(p.getCategory()).add(p);
+					String sql3 = "SELECT name FROM products WHERE product_id IN (SELECT sub_product_id FROM product_has_products WHERE product_id = "+p.getProductId()+" AND order_id IS NULL)";
+					st3 = con.prepareStatement(sql3);
+					ResultSet rs3 = st3.executeQuery();
+					while(rs3.next()){
+						p.getSubproducts().add(rs3.getString("name"));
+					}
+				}
+			} catch (SQLException e) {
+				System.err.print("Problem with extracting products");
+				System.out.println(e.getMessage());
+				products = null;
+			} finally {
+				if (st1 != null) {
+		            st1.close();
+		        }
+		        if (st2 != null) {
+		            st2.close();
+		        }
 			}
-		} catch (SQLException e) {
-			System.err.print("Problem with extracting products");
-			System.out.println(e.getMessage());
-			products = null;
-		} finally {
-			if (st1 != null) {
-	            st1.close();
-	        }
-	        if (st2 != null) {
-	            st2.close();
-	        }
 		}
 		return products;
 	}

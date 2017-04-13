@@ -126,7 +126,7 @@ http://www.templatemo.com/free-website-templates/417-grill
                     </div>
                     <div class="row" id="Container">
                    <c:forEach var="product" items="${sessionScope.products}"> 	
-                        <div class="col-md col-sm mix portfolio-item ${product.category}">       
+                        <div class="col-md col-sm mix ${product.category}">       
                             <div class="portfolio-wrapper">                
                                 <div class="portfolio-thumb">
                                     <img src="images/product1.jpg" alt="" />
@@ -138,7 +138,7 @@ http://www.templatemo.com/free-website-templates/417-grill
                                     </div>
                                 </div>  
                                 <div class="label-text">
-                                    <h3><a href="single-post.html">${product.name}</a></h3>
+                                    <h3><a href="productServlet?product=${product.name}&category=${product.category}">${product.name}</a></h3>
                                     <span class="text-category">${product.price}</span>
                                 </div>
                             </div>          
