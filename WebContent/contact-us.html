@@ -26,6 +26,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         <link rel="stylesheet" href="css/testimonails-slider.css">
 
         <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+       
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -260,32 +261,54 @@ http://www.templatemo.com/free-website-templates/417-grill
         <script src="js/vendor/jquery.gmap3.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+	<script>
+      var map;
+      function initialize() {
+        map = new google.maps.Map(document.getElementById('googleMap'), {
+          zoom: 15,
+          center: new google.maps.LatLng(42.69752929836637, 23.32174301147461),
+          mapTypeId: 'roadmap'
+        });
 
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&amp;sensor=false">
-        </script>
-                
-        <script>
-		
-		var map;
-		
-        function initialize()
-        {
-			var map_options = {
-			  center: new google.maps.LatLng(16.8496189,96.1288854),
-			  zoom: 15,
-			  mapTypeId:google.maps.MapTypeId.ROADMAP
-			  };
-			var map = new google.maps.Map(document.getElementById("googleMap"), map_options);
-        }
+        var iconBase = 'images/';
+        var icons = {
+          info: {
+            icon: iconBase + 'logo.png'
+          }
+        };
 
-        google.maps.event.addDomListener(window, 'load', initialize);
-		google.maps.event.addDomListener(window, "resize", function() 
-		{
-		 	var center = map.getCenter();
-		 	google.maps.event.trigger(map, "resize");
-		 	map.setCenter(center); 
-		});
-        </script>
+        var features = [
+          {
+            position: new google.maps.LatLng(42.6996424670517, 23.31228017807007),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(42.692671891757854, 23.310391902923584),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(42.70131402715675, 23.322772979736328),
+            type: 'info'
+          }
+        ];
 
+        // Create markers.
+        var markers = new Array();
+        features.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+          });
+          markers.push(marker);
+        });
+        markers.forEach(function(marker){        	
+        marker.addListener('click', function() {
+            map.setZoom(18);
+            map.setCenter(marker.getPosition());
+          });
+        });
+      }
+    </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuffIc1zoBfItTDGKfqOYWnlIj2DhkUeM&callback=initialize" type="text/javascript"></script>                
     </body>
 </html>

@@ -97,7 +97,14 @@ http://www.templatemo.com/free-website-templates/417-grill
                     </div>
                 </div>
             </div>
+			<script type="text/javascript">
+			var chk1 = $("input[type='checkbox'][value='extra']");
+			var chk2 = $("input[type='checkbox'][value='pro']");
 
+			chk1.on('change', function(){
+			    chk2.prop('checked',this.checked);
+			});
+			</script>
 
 
 
@@ -120,7 +127,7 @@ http://www.templatemo.com/free-website-templates/417-grill
                                         <div class="col-md-8">  
                                                 <div class="image">
                                                     <div class="image-post">
-                                                        <img src="images/single-post.jpg" alt="">
+                                                        <img src="${product.path}" alt="">
                                                     </div>
                                                 </div>
                                                 <div class="product-content">
@@ -129,26 +136,25 @@ http://www.templatemo.com/free-website-templates/417-grill
                                                         <span class="subtitle">${product.price}</span>
                                                     </div>
                                                     <c:if test="${!empty product.subproducts}">
-                                                    	<form action="POST">
+                                                    	<form action="produtServlet" method="post">
 	                                                    	<c:forEach var="sub" items="${product.subproducts}">
-		                                                    	<c:forEach var="subproduct" items="${sessionScope.subproducts}">
 		                                                    		<table>
-		                                                    		<c:if test="${subproduct != sub}">
-		                                                    			<tr>
-																		    <th><input type="checkbox" name="${subproduct}" value="${subproduct}" /> ${subproduct}</th>
-																		    <th><input type="checkbox" name="extra ${subproduct}" value="extra" /> Extra</th>
-  																		</tr>
-		                                                    		</c:if>
-		                                                    		<br>
-		                                                    		<c:if test="${subproduct == sub}">	
-		                                                    			<tr>
-																	  		<th><input type="checkbox" name="${subproduct}" value="${subproduct}" checked="checked"> ${subproduct}</th>
-																			<th><input type="checkbox" name="extra ${subproduct}" value="extra"> Extra</th>
-		                                                    			<tr>                                                    		
-		                                                    		</c:if>
-		                                                    		</table>                               		
-		                                                    	</c:forEach>
+		                                                    		<tr>
+																		   <th><input type="checkbox" name="${sub}" value="pro" checked="checked"/> ${sub}</th>
+																		   <th><input type="checkbox" name="extra ${sub}" value="extra" /> Extra</th>
+  																	</tr>
+  																	</table>
 		                                                    </c:forEach>
+		                                                    <c:forEach var="subproduct" items="${sessionScope.subproducts}">
+		                                                    	<table>
+		                                                    	<br>
+		                                                    		<tr>
+																 		<th><input type="checkbox" name="${subproduct.name}" value="pro" > ${subproduct.name}</th>
+																		<th><input type="checkbox" name="extra ${subproduct.name}" value="extra"> Extra</th>
+		                                                    		<tr>
+		                                                    	</table>                               		
+		                                                    </c:forEach>
+		                                                    <input type="submit" value="Submit">
 														</form>
                                                     </c:if>
                                                     
