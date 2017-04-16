@@ -97,18 +97,6 @@ http://www.templatemo.com/free-website-templates/417-grill
                     </div>
                 </div>
             </div>
-			<script type="text/javascript">
-			var chk1 = $("input[type='checkbox'][value='extra']");
-			var chk2 = $("input[type='checkbox'][value='pro']");
-
-			chk1.on('change', function(){
-			    chk2.prop('checked',this.checked);
-			});
-			</script>
-
-
-
-
             <div id="product-post">
                 <div class="container">
                     <div class="row">
