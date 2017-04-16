@@ -61,9 +61,29 @@ public class productServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] subproducts = req.getParameterValues("subproduct");
+		ArrayList<String> pro = new ArrayList<>();
 		for (String string : subproducts) {
-			System.out.println(string);
+			pro.add(string);
 		}
+		ArrayList<Product> temp = new ArrayList<>();
+		ArrayList<Product> products = new ArrayList<>();
+		try {
+			temp.addAll(ProductDAO.getInstance().getAllProducts().get("Toppings"));
+			temp.addAll(ProductDAO.getInstance().getAllProducts().get("Crusts"));
+			temp.addAll(ProductDAO.getInstance().getAllProducts().get("Size"));
+			for (Product product : temp) {
+				if(pro.contains(product.getName())){
+					products.add(product);
+				}
+			}
+			req.getSession().setAttribute("products", products);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		req.getRequestDispatcher("cart.jsp").forward(req, resp);
+		
 	}
 
 }
