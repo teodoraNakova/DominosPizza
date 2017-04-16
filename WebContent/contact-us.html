@@ -289,7 +289,16 @@ http://www.templatemo.com/free-website-templates/417-grill
             type: 'info'
           }
         ];
+		
+        var contentString = 
+        '<div>'+
+        '<h1 id="firstHeading" class="firstHeading">Grill</h1>'
+        '</div>';
 
+    	var infowindow = new google.maps.InfoWindow({
+      		content: contentString
+    	});
+        
         // Create markers.
         var markers = new Array();
         features.forEach(function(feature) {
@@ -304,6 +313,7 @@ http://www.templatemo.com/free-website-templates/417-grill
         marker.addListener('click', function() {
             map.setZoom(18);
             map.setCenter(marker.getPosition());
+            infowindow.open(map, this);
           });
         });
       }

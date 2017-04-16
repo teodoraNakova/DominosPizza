@@ -54,12 +54,13 @@ private static ProductDAO instance;
 				while(rs1.next()){
 					products.put(rs1.getString("category"), new ArrayList<Product>());
 				}
-				String sql2 = "SELECT product_id, name, price, category FROM products";
+				String sql2 = "SELECT product_id, name, price, category, img_path FROM products";
 				st2 = con.prepareStatement(sql2);
 				ResultSet rs2 = st2.executeQuery();
 				while(rs2.next()){
 					Product p = new Product(rs2.getString("name"), rs2.getDouble("price"), rs2.getString("category"));
 					p.setProductId(rs2.getLong("product_id"));
+					p.setPath(rs2.getString("img_path")+".png");
 					products.get(p.getCategory()).add(p);
 					String sql3 = "SELECT name FROM products WHERE product_id IN (SELECT sub_product_id FROM product_has_products WHERE product_id = "+p.getProductId()+" AND order_id IS NULL)";
 					st3 = con.prepareStatement(sql3);

@@ -11,6 +11,7 @@ public class Product {
 	private String category;
 	private ArrayList<String> subproducts;
 	private String sub;
+	private String path;
 	
 	public Product(String name, double price, String category) {
 		this.name = name;
@@ -51,6 +52,15 @@ public class Product {
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
+	
+	public String getPath() {
+		return path;
+	}
+	
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
 	@Override
 	public String toString() {
 		return name;

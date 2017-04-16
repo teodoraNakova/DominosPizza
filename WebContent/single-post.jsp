@@ -135,24 +135,33 @@ http://www.templatemo.com/free-website-templates/417-grill
                                                         <h3><c:out value="${product.name}"/></h3>
                                                         <span class="subtitle">${product.price}</span>
                                                     </div>
-                                                    <c:if test="${!empty product.subproducts}">
-                                                    	<form action="produtServlet" method="post">
-	                                                    	<c:forEach var="sub" items="${product.subproducts}">
-		                                                    		<table>
-		                                                    		<tr>
-																		   <th><input type="checkbox" name="${sub}" value="pro" checked="checked"/> ${sub}</th>
-																		   <th><input type="checkbox" name="extra ${sub}" value="extra" /> Extra</th>
-  																	</tr>
-  																	</table>
-		                                                    </c:forEach>
+                                                    <c:if test="${product.category eq 'Pizzaz'}">
+                                                    	<form action="productServlet" method="post">
 		                                                    <c:forEach var="subproduct" items="${sessionScope.subproducts}">
+		                                                    <c:set var="contains" value="false" />
+		                                                    <c:forEach var="sub" items="${product.subproducts}">
+		                                                    	<c:if test="${sub eq subproduct.name }">
+		                                                    		<c:set var="contains" value="true"/>
+		                                                    	</c:if>
+		                                                    </c:forEach>
+		                                                    <c:if test ="${contains eq true }">
 		                                                    	<table>
 		                                                    	<br>
 		                                                    		<tr>
-																 		<th><input type="checkbox" name="${subproduct.name}" value="pro" > ${subproduct.name}</th>
-																		<th><input type="checkbox" name="extra ${subproduct.name}" value="extra"> Extra</th>
+																 		<th><input type="checkbox" name="subproduct" value="${subproduct.name }" checked="checked" onclick="return false"> ${subproduct.name}</th>
+																		<th><input type="checkbox" name="subproduct" value="extra ${subproduct.name}"> Extra</th>
 		                                                    		<tr>
 		                                                    	</table>                               		
+		                                                    </c:if>
+		                                                   <c:if test ="${contains eq false }">
+		                                                    	<table>
+		                                                    	<br>
+		                                                    		<tr>
+																 		<th><input type="checkbox" name="subproduct" value="${subproduct.name }"> ${subproduct.name}</th>
+																		<th><input type="checkbox" name="subproduct" value="extra ${subproduct.name}"> Extra</th>
+		                                                    		<tr>
+		                                                    	</table>                               		
+		                                                    </c:if>
 		                                                    </c:forEach>
 		                                                    <input type="submit" value="Submit">
 														</form>

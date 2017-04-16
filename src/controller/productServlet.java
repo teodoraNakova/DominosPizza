@@ -31,11 +31,39 @@ public class productServlet extends HttpServlet {
 				}
 			}
 			request.getSession().setAttribute("product", pro);
-			request.getSession().setAttribute("subproducts", ProductDAO.getInstance().getAllProducts().get("Toppings"));
+			ArrayList<Product> sub = new ArrayList<>();
+			ArrayList<Product> temp = new ArrayList<>();
+			temp.addAll(ProductDAO.getInstance().getAllProducts().get("Toppings"));
+			temp.addAll(ProductDAO.getInstance().getAllProducts().get("Crusts"));
+			temp.addAll(ProductDAO.getInstance().getAllProducts().get("Size"));
+			
+			for (String subpro : pro.getSubproducts()) {
+				for (Product product2 : temp) {
+					if(!subpro.equals(product2.getName()) && !sub.contains(product2)){
+						sub.add(product2);
+					}
+				}
+			}
+
+			ArrayList<Product> temp2 = new ArrayList<>();
+			for (Product subpro : sub) {
+				if(!pro.getSubproducts().contains(subpro.getName())){
+					temp2.add(subpro);
+				}
+			}
+			request.getSession().setAttribute("subproducts", temp);
 		} catch (SQLException e) {
 			System.out.println("fsafa");
 		}
 		request.getRequestDispatcher("single-post.jsp").forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String[] subproducts = req.getParameterValues("subproduct");
+		for (String string : subproducts) {
+			System.out.println(string);
+		}
 	}
 
 }
